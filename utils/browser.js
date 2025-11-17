@@ -1,4 +1,4 @@
-const { chromium, firefox, webkit } = require('@playwright/test');
+import { chromium, firefox, webkit } from '@playwright/test';
 
 async function invokeBrowser(options = {}) {
     const browserType = process.env.BROWSER || 'chromium';
@@ -21,4 +21,4 @@ async function invokeBrowser(options = {}) {
     }
 }
 
-module.exports = { invokeBrowser };
+export { invokeBrowser };

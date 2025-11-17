@@ -1,7 +1,7 @@
 // Page Object for Campaign Template Add Page
-const { expect } = require('@playwright/test');
+import { expect } from '@playwright/test';
 
-exports.CampaignTemplatesAddPage = class CampaignTemplatesAddPage {
+export class CampaignTemplatesAddPage {
   /**
    * @param {import('@playwright/test').Page} page
    */

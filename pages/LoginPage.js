@@ -1,5 +1,5 @@
-const { expect } = require('@playwright/test');
-const env = require('../utils/env');
+import { expect } from '@playwright/test';
+import env from '../utils/env.js';
 
 class LoginPage {
   constructor(page) {
@@ -28,4 +28,4 @@ async goto() {
   }
 }
 
-module.exports = LoginPage;
+export default LoginPage;

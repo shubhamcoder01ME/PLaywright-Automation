@@ -1,6 +1,6 @@
-const { test, expect } = require('@playwright/test');
-const { IdentitiesPage } = require('../../pages/IdentitiesPage');
-const { IdentitiesAddPage } = require('../../pages/IdentitiesAddPage');
+import { test, expect } from '@playwright/test';
+import { IdentitiesPage } from '../../pages/identities/IdentitiesPage.js';
+import { IdentitiesAddPage } from '../../pages/identities/IdentitiesAddPage.js';
 
 test.describe('Identities Page UI Validation', () => {
 

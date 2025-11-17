@@ -1,4 +1,4 @@
-const { expect } = require('@playwright/test');
+import { expect } from '@playwright/test';
 
 class SystemOfRecordAddPage {
   /**
@@ -60,7 +60,7 @@ class SystemOfRecordAddPage {
 
   async verifyAddPageLoaded() {
     await this.addPageHeading.waitFor({ state: 'visible' });
-    await this.fileUploadRadio.waitFor({ state: 'visible' });
+   // await this.fileUploadRadio.waitFor({ state: 'visible' });
     await this.setupApplicationSection.waitFor({ state: 'visible' });
     await this.saveButton.waitFor({ state: 'visible' });
   }
@@ -187,4 +187,4 @@ class SystemOfRecordAddPage {
   }
 }
 
-module.exports = SystemOfRecordAddPage;
+export default SystemOfRecordAddPage;

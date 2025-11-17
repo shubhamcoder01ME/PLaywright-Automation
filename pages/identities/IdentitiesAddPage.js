@@ -1,7 +1,7 @@
 // pages/IdentitiesAddPage.js
-const { expect } = require('@playwright/test');
+import { expect } from '@playwright/test';
 
-exports.IdentitiesAddPage = class IdentitiesAddPage {
+export class IdentitiesAddPage {
   /**
    * @param {import('@playwright/test').Page} page
    */

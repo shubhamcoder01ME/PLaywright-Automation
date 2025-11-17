@@ -1,4 +1,4 @@
-const chalk = require('chalk');
+import chalk from 'chalk';
 
 /**
  * Simple logger utility for Playwright tests
@@ -21,4 +21,4 @@ class Logger {
   }
 }
 
-module.exports = Logger;
+export default Logger;

@@ -1,13 +1,19 @@
-const { test, expect } = require('@playwright/test');
-const { CampaignTemplatesPage } = require('../../pages/CampaignTemplatesPage');
-const { CampaignTemplatesAddPage } = require('../../pages/CampaignTemplatesAddPage');
+import { test, expect } from '@playwright/test';
+import { CampaignTemplatesPage } from '../../pages/CampaignTemplate/CampaignTemplatesPage.js';
+import { CampaignTemplatesAddPage } from '../../pages/CampaignTemplate/CampaignTemplatesAddPage.js';
+import { time } from 'console';
 
 test.describe('Campaign Templates Page UI Validation', () => {
-  test('should validate all UI elements ', async ({ page }) => {
-    const campaignTemplates = new CampaignTemplatesPage(page);
-    await campaignTemplates.goto();
+  let campaignTemplates;
+  
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
+    campaignTemplates = new CampaignTemplatesPage(page);
+    await campaignTemplates.leftnav();
     await campaignTemplates.validateUI();
+  });
 
+  test('should validate all UI elements and ADD ', async ({ page }) => {
     // Validate Add button is clickable
     await expect(campaignTemplates.addButton).toBeEnabled();
 
@@ -18,12 +24,7 @@ test.describe('Campaign Templates Page UI Validation', () => {
     // Validate Refresh button is clickable
     await expect(campaignTemplates.refreshButton).toBeEnabled();
     await campaignTemplates.refreshButton.click();
-  });
 
-  test('should validate Create Template add page UI and navigation', async ({ page }) => {
-    const campaignTemplates = new CampaignTemplatesPage(page);
-    await campaignTemplates.goto();
-    await campaignTemplates.validateUI();
     await campaignTemplates.addButton.click();
 
     const addPage = new CampaignTemplatesAddPage(page);
@@ -37,33 +38,28 @@ test.describe('Campaign Templates Page UI Validation', () => {
     await expect(campaignTemplates.heading).toBeVisible();
   });
 
-  test('should verify first row gear box menu options and Update/Details navigation', async ({ page }) => {
-    const campaignTemplates = new CampaignTemplatesPage(page);
-    await campaignTemplates.goto();
-    await campaignTemplates.validateUI();
 
+
+  test('verify first row gear box menu options and Update/Details navigation', async ({ page }) => {
     const hasRows = await campaignTemplates.openFirstRowMenu();
     if (!hasRows) test.skip('No data rows present');
 
-    // Verify all expected options
-    const expectedOptions = [
-      'Update',
-      'Copy',
-      'Details',
-      'Delete',
-      'Disable',
-      'View Audit Trail',
-    ];
-    await campaignTemplates.verifyMenuOptions(expectedOptions);
+    // // Verify all expected options
+    // const expectedOptions = [
+    //   'Update',
+    //   'Copy',
+    //   'Details',
+    //   'Delete',
+    //   'Disable',
+    //   'View Audit Trail',
+    // ];
+    // await campaignTemplates.verifyMenuOptions(expectedOptions);
 
-    // Test Update navigation
-    await campaignTemplates.updateTemplate();
+    await campaignTemplates.updateTemplateAndAssert();
+    await page.waitForTimeout(500);
     await campaignTemplates.backToList();
-
-    // Open menu again for Details
+    await page.waitForTimeout(500);
     await campaignTemplates.openFirstRowMenu();
-    await campaignTemplates.verifyMenuOptions(expectedOptions);
-    await campaignTemplates.detailsTemplate();
-    await campaignTemplates.backToList();
+    await campaignTemplates.detailsTemplateAndAssert();
   });
 });

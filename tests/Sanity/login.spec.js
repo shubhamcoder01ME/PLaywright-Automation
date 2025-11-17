@@ -1,7 +1,7 @@
-const { test, expect } = require('@playwright/test');
-const LoginPage = require('../../pages/LoginPage');
-const Logger = require('../../utils/logger');
-const env = require('../../utils/env'); //  import env
+import { test, expect } from '@playwright/test';
+import LoginPage from '../../pages/LoginPage.js';
+import Logger from '../../utils/logger.js';
+import env from '../../utils/env.js'; //  import env
 
 test.describe.skip('Sanity - Login', () => {
   test.skip('login with valid credentials', async ({ page }) => {

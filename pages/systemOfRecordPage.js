@@ -1,5 +1,5 @@
-const { test, expect } = require('@playwright/test');
-const { time } = require('console');
+import { test, expect } from '@playwright/test';
+import { time } from 'console';
 class SystemOfRecordPage {
   /**
    * @param {import('@playwright/test').Page} page
@@ -210,9 +210,6 @@ async hoverMoreAndVerifySubOptions(subOptions) {
 
 
 
-
-
-
   async clickDetailsUnderMore() {
     const details = this.page.locator('text=Details').first();
     await details.click();
@@ -331,4 +328,4 @@ async clickBackFromDetailsOrAuditTrail() {
 };
 
 
-module.exports = SystemOfRecordPage;
+export default SystemOfRecordPage;

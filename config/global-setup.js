@@ -1,10 +1,12 @@
-const fs = require('fs');
-const path = require('path');
-const env = require('../utils/env');             // env file
-const LoginPage = require('../pages/LoginPage'); // corrected import path
-const { invokeBrowser } = require('../utils/browser'); // browser utility
+import { fileURLToPath } from 'url';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+import fs from 'fs';
+import path from 'path';
+import env from '../utils/env.js'; // env file
+import LoginPage from '../pages/LoginPage.js'; // corrected import path
+import { invokeBrowser } from '../utils/browser.js'; // browser utility
 
-module.exports = async () => {
+export default async function globalSetup() {
   const storagePath = path.join(__dirname, '..', 'storageState.json');
 
   // Delete old storage state if it exists
@@ -41,4 +43,4 @@ module.exports = async () => {
   console.log('Global setup complete, new session saved to storageState.json.');
 
   await browser.close();
-};
+}
