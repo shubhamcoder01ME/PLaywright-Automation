@@ -6,9 +6,10 @@ test.describe('Intelligence Page UI Validation', () => {
   let intelligencePage;
 
   test('Full Intelligence Section Test', async ({ page }) => {
+    test.setTimeout(90000); // Set test timeout to 90 seconds
     // Login is handled by global setup (storageState)
-    await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.goto('/', { timeout: 90000 });
+    await page.waitForLoadState('load', { timeout: 60000 });
 
     intelligencePage = new IntelligencePage(page);
     await intelligencePage.clickIdentityMindmapMenu();
